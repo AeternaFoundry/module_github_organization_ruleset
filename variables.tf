@@ -268,7 +268,7 @@ EOT
         contains(["disabled", "active", "evaluate"], v.enforcement)
       )
     ])
-    error_message = "must be one of: disabled, active, evaluate"
+    error_message = "must be one of: \"disabled\", \"active\", \"evaluate\""
   }
   validation {
     condition = alltrue([
@@ -276,7 +276,7 @@ EOT
         v.bypass_actors == null || alltrue([for item in v.bypass_actors : (contains(["Integration", "OrganizationAdmin", "RepositoryRole", "Team", "DeployKey", "EnterpriseOwner"], item.actor_type))])
       )
     ])
-    error_message = "must be one of: Integration, OrganizationAdmin, RepositoryRole, Team, DeployKey, EnterpriseOwner"
+    error_message = "must be one of: \"Integration\", \"OrganizationAdmin\", \"RepositoryRole\", \"Team\", \"DeployKey\", \"EnterpriseOwner\""
   }
   validation {
     condition = alltrue([
@@ -284,7 +284,7 @@ EOT
         v.bypass_actors == null || alltrue([for item in v.bypass_actors : (contains(["always", "pull_request", "exempt"], item.bypass_mode))])
       )
     ])
-    error_message = "must be one of: always, pull_request, exempt"
+    error_message = "must be one of: \"always\", \"pull_request\", \"exempt\""
   }
   validation {
     condition = alltrue([
@@ -292,7 +292,7 @@ EOT
         v.conditions == null || (v.conditions.repository_property == null || (v.conditions.repository_property.include == null || alltrue([for item in v.conditions.repository_property.include : (item.source == null || (contains(["custom", "system"], item.source)))])))
       )
     ])
-    error_message = "must be one of: custom, system"
+    error_message = "must be one of: \"custom\", \"system\""
   }
   validation {
     condition = alltrue([
@@ -300,7 +300,7 @@ EOT
         v.conditions == null || (v.conditions.repository_property == null || (v.conditions.repository_property.exclude == null || alltrue([for item in v.conditions.repository_property.exclude : (item.source == null || (contains(["custom", "system"], item.source)))])))
       )
     ])
-    error_message = "must be one of: custom, system"
+    error_message = "must be one of: \"custom\", \"system\""
   }
   validation {
     condition = alltrue([
@@ -308,7 +308,7 @@ EOT
         v.rules.pull_request == null || (v.rules.pull_request.allowed_merge_methods == null || (alltrue([for x in v.rules.pull_request.allowed_merge_methods : contains(["merge", "squash", "rebase"], x)])))
       )
     ])
-    error_message = "must be one of: merge, squash, rebase"
+    error_message = "must be one of: \"merge\", \"squash\", \"rebase\""
   }
   validation {
     condition = alltrue([
@@ -324,7 +324,7 @@ EOT
         v.rules.pull_request == null || (v.rules.pull_request.required_reviewers == null || alltrue([for item in v.rules.pull_request.required_reviewers : (contains(["Team"], item.reviewer.type))]))
       )
     ])
-    error_message = "must be one of: Team"
+    error_message = "must be one of: \"Team\""
   }
   validation {
     condition = alltrue([
@@ -348,7 +348,7 @@ EOT
         v.rules.required_code_scanning == null || (alltrue([for item in v.rules.required_code_scanning.required_code_scanning_tool : (contains(["none", "errors", "errors_and_warnings", "all"], item.alerts_threshold))]))
       )
     ])
-    error_message = "must be one of: none, errors, errors_and_warnings, all"
+    error_message = "must be one of: \"none\", \"errors\", \"errors_and_warnings\", \"all\""
   }
   validation {
     condition = alltrue([
@@ -356,7 +356,7 @@ EOT
         v.rules.required_code_scanning == null || (alltrue([for item in v.rules.required_code_scanning.required_code_scanning_tool : (contains(["none", "critical", "high_or_higher", "medium_or_higher", "all"], item.security_alerts_threshold))]))
       )
     ])
-    error_message = "must be one of: none, critical, high_or_higher, medium_or_higher, all"
+    error_message = "must be one of: \"none\", \"critical\", \"high_or_higher\", \"medium_or_higher\", \"all\""
   }
   validation {
     condition = alltrue([
